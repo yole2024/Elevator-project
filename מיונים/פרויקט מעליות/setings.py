@@ -1,0 +1,10 @@
+NUM_FLOORS = 1
+NOM_ELEVATORS = 2
+
+SPEED_PER_FLOOR = 0.5
+STOP_TIME = 2
+FLOOR_WEIGHT = 50
+IMAGE_FLOOR = '/home/mefathim89/Downloads/WhatsApp Image 2024-06-02 at 12.15.10.jpeg'
+IMAGE_ELEVATOR = 'elv.png'
+WIDTH = 500
+HEIGHT= 750
