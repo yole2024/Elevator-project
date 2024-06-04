@@ -26,7 +26,7 @@ class elevator:
                 elapsed_time = current_time - self.exit_time
                   #זמן שחלף
         
-        def draw_floor( self, screen):
+        def draw_elevator( self, screen):
             screen.blit(self.img_elevator,(self.x, self.y))
 
                 
