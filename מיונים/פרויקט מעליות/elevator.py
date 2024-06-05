@@ -1,14 +1,12 @@
 from collections import deque
 import time
 from setings import *
-# from floor import *
 import pygame 
   
 class elevator:
         def __init__(self, x, y):
             self.current_floor = 0 
             self.target_floor = None
-          #  self.state = elavator_state.IDLE
             self.moving = False
             self.queue = []  #מקבל קריאות ומכניס לתור
             self.y_position = 0

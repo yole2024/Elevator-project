@@ -7,7 +7,7 @@ class floor:
     def __init__(self, x, y):
         self.Timer = 0
         self.light = None
-        self.img_floor = pygame.transform.scale(pygame.image.load(IMAGE_FLOOR),(100, 50))
+        self.img_floor = pygame.transform.scale(pygame.image.load(IMAGE_FLOOR),(FLOOR_WEIGHT,FLOOR_HEIGHT))
         self.x = x
         self.y = y
 
@@ -29,3 +29,5 @@ class floor:
     def draw_floor( self, screen):
         screen.blit(self.img_floor,(self.x, self.y))
 
+    def draw_floor_number(self):
+        pass

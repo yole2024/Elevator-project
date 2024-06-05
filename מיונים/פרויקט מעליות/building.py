@@ -1,24 +1,24 @@
-from elevator import elevator
+from elevator import *
 from setings import *
-from floor import floor
+from floor import *
 
 class building:
     def __init__(self):
         self.floors = []
-        k = HEIGHT - 100
+        y = HEIGHT - FLOOR_HEIGHT
         for i in range(NUM_FLOORS):
-            self.floors.append(floor(0, k))
-            k -= 60
+            self.floors.append(floor(5, y))
+            y -= FLOOR_HEIGHT
         self.elevators = []
-        z = HEIGHT -100
+        z = HEIGHT -ELEVATOR_WEIGHT
         for i in range(NOM_ELEVATORS):
-            self.elevators.append(elevator(6,z))
-            z -= 60
+            self.elevators.append(elevator(300,z))
+           # z -= 60
 
-    def select_best_elevator(elevators, request_floor):
+    def select_best_elevator(self, request_floor):
         best_elevator = None
         minimum_time = float('inf')
-        for elevator in elevators:
+        for elevator in self.elevators:
             time_to_free = elevator.calculate_times_for_all()
             travel_time = elevator.calculate_time(request_floor)
             total_time = time_to_free + travel_time
@@ -33,6 +33,7 @@ class building:
         for i in self.floors:
             i.draw_floor(screen)
 
-    
-    
+    def update (self):
+        for i in self.elevators:
+            i.update()
     
