@@ -1,6 +1,7 @@
 from settings import *
 from collections import deque
 import pygame
+import time
 
 class Elevator:
     def __init__(self, num):
@@ -14,7 +15,6 @@ class Elevator:
 
 
     def draw(self, screen):
-        print(self.x,self.y)
         screen.blit(self.img, (self.x, self.y))
 
     def move(self, target_floor):
@@ -22,7 +22,7 @@ class Elevator:
 
 
     def append (self, num_floor, time):
-        self.tasks.append(num_floor, time)
+        self.tasks.append((num_floor, time))
 
 
     def get_final_floor(self):
@@ -41,3 +41,21 @@ class Elevator:
         if self.tasks:
             return self.tasks[-1][1]
         return 0
+    
+
+    def update(self):
+        if not self.moving and self.tasks:
+            self.target_floor = self.tasks.popleft()
+            self.moving = True
+            self.exit_time = time.time()
+        elif self.moving:
+            current_time = time.time()
+            elapsed_time = current_time - self.exit_time
+            travel_time = abs(self.target_floor - self.current_floor) * SECONDS_PER_FLOOR
+
+            if elapsed_time >= travel_time + STOP_TIME:
+                self.current_floor = self.target_floor
+                self.moving = False
+                self.exit_time = None
+
+    #def 

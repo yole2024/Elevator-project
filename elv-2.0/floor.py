@@ -8,7 +8,7 @@ class Floor:
         self.num = num
         self.has_elevator = True if num == 0 else False
         self.called_elevator = self.has_elevator
-        self.timer = 2
+        self.timer = 0
         self.y = SCREEN_HEIGHT - (self.num + 1) * FLOOR_IMAGE_HEIGHT
         self.x = 0
         img = pygame.image.load(FLOOR_IMAGE_PATH)
@@ -18,7 +18,7 @@ class Floor:
                                   FLOOR_IMAGE_HEIGHT *0.8,
                                   FLOOR_IMAGE_HEIGHT *0.8
                                    )
-        
+        self.font = pygame.font.SysFont('Arial', 25)
 
 
 
@@ -29,6 +29,20 @@ class Floor:
         pygame.draw.circle(screen, (BUTTON_COLOR), self.button.center,
                            self.button.width*.3)
         
+        text_surface = self.font.render(f'{self.num}', True, (NUM_FLOOR_COLOR))
+        screen.blit(text_surface, (self.x + 60, self.y + FLOOR_IMAGE_HEIGHT*0.3))        
+
+        if self.timer > 0:
+            timer_surface = self.font.render(f'{self.timer}', True, (BLACK))
+            screen.blit(timer_surface, (self.x + 10, self.y + 40))
+
+    def countdown_timer(self, time):
+        self.timer = time
+
+    def update_timer(self):
+        if self.timer > 0:
+            self.timer -= 1
+
 
 
     def countdown_timer(self, time):

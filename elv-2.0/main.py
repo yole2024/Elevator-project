@@ -23,5 +23,7 @@ while run :
         if event.type == pygame.MOUSEBUTTONDOWN:
             x, y = pygame.mouse.get_pos()
             building.ide(x, y)
+
+
     pygame.display.flip()
             

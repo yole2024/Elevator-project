@@ -22,17 +22,16 @@ class Building:
         best_elevator = None
         minimum_time = float('inf')
         for elevator in self.elevators:
-            time_to_free = elevator.calculate_times_for_all
+            time_to_free = elevator.calculate_times_for_all()
             travel_time = elevator.calculate_time(request_floor)
             total_time = time_to_free + travel_time
 
             if total_time < minimum_time:
-                
                 minimum_time = total_time
                 best_elevator = elevator
 
-        best_elevator.append((request_floor, minimum_time))  
-        request_floor.countdown_timer(minimum_time)
+        best_elevator.append(request_floor, minimum_time)  
+        self.floors[request_floor].countdown_timer(minimum_time - STOP_TIME)
 
 
 
@@ -44,7 +43,8 @@ class Building:
         for floor in self.floors:
             floor.draw(screen, FLOOR_SPACER_HEIGHT)
         for elevator in self.elevators:
-            elevator.draw(screen) 
+            elevator.draw(screen)
+        
         
 
     
